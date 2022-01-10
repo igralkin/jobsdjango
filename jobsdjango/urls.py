@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from vacancies.views import main_view, vacancies_view, company_view, vacancy_view, vacancy_category_view
 from vacancies.views import custom_handler400, custom_handler403, custom_handler404, custom_handler500
+
 
 handler400 = custom_handler400
 handler403 = custom_handler403
@@ -33,3 +36,6 @@ urlpatterns = [
     path('vacancies/<int:vacancy_id>/', vacancy_view),
     path('vacancies/cat/<str:specialty_code>/', vacancy_category_view),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
