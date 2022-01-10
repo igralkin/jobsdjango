@@ -34,7 +34,7 @@ def main_view(request):
         'specialities': specialities,
         'companies': companies,
     }
-    print(specialities)
+    # print(specialities)
     return render(request, 'vacancies/index.html', context=context)
 
 
